@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-// const glob = require("glob")
 import glob from "glob";
 
 export default defineConfig({
