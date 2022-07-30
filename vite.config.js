@@ -8,6 +8,6 @@ export default defineConfig({
         outDir: '../dist',
     },
     server: {
-        open: '/index.html',
+        open: '/',
     }
 });
