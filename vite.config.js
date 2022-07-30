@@ -1,6 +1,20 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import glob from "glob";
+import handlebars from 'vite-plugin-handlebars';
+
+const pageData = {
+    '/index.html': {
+        title: 'Main Page',
+    },
+    '/about/index.html': {
+        people: [
+            "Aさん",
+            "Sさん",
+            "Nさん",
+        ],
+    },
+};
 
 export default defineConfig({
     root: './src',
@@ -38,4 +52,14 @@ export default defineConfig({
     server: {
         open: '/',
     },
+    plugins: [
+        handlebars({
+            //コンポーネントの格納ディレクトリを指定
+            partialDirectory: resolve(__dirname, './src/components'),
+            //各ページ情報の読み込み
+            context(pagePath) {
+                return pageData[pagePath];
+            },
+        }),
+    ],
 });
