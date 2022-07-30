@@ -13,14 +13,19 @@ export default defineConfig({
             output: {
                 assetFileNames: (assetInfo) => {
                     console.log(assetInfo);
-                    const extType = assetInfo.name.split('.')[1];
+                    const [dirFileName, extType] = assetInfo.name.split('.');
+                    const dir = (() => {
+                        const ary = dirFileName.split("/");
+                        if (ary.length <= 1) {
+                            return ''; //ディレクトリの階層が1階層のとき
+                        }
+                        ary.pop(); //ファイル名を削除
+                        return ary.join("/") + '/';
+                    })();
                     if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
                         return `assets/images/[name][extname]`;
                     }
-                    // if (extType === 'css') {
-                    //     return `assets/css/style.css`;
-                    // }
-                    return `assets/${extType}/[name][extname]`;
+                    return `${dir}${extType}/[name][extname]`;;
                 },
                 chunkFileNames: 'assets/js/[name].js',
                 entryFileNames: 'assets/js/[name].js',
