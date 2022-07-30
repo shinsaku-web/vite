@@ -4,7 +4,7 @@ import glob from "glob";
 
 export default defineConfig({
     root: './src',
-    base: "./",
+    // base: "./",
     publicDir: '../public',
     build: {
         outDir: '../dist',
@@ -27,8 +27,8 @@ export default defineConfig({
                     }
                     return `${dir}${extType}/[name][extname]`;;
                 },
-                chunkFileNames: 'assets/js/[name].js',
-                entryFileNames: 'assets/js/[name].js',
+                chunkFileNames: 'assets/js/main.js',
+                entryFileNames: 'assets/js/main.js',
             },
         }
     },
