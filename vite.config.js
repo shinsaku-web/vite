@@ -25,7 +25,10 @@ export default defineConfig({
                     if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
                         return `assets/images/[name][extname]`;
                     }
-                    return `${dir}${extType}/[name][extname]`;;
+                    if (extType === 'css') {
+                        return `${dir}css/style.css`;
+                    }
+                    return `${dir}${extType}/[name][extname]`;
                 },
                 chunkFileNames: 'assets/js/main.js',
                 entryFileNames: 'assets/js/main.js',
